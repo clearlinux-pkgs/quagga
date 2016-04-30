@@ -4,7 +4,7 @@
 #
 Name     : quagga
 Version  : 0.99.24.1
-Release  : 3
+Release  : 4
 URL      : http://download.savannah.gnu.org/releases/quagga/quagga-0.99.24.1.tar.gz
 Source0  : http://download.savannah.gnu.org/releases/quagga/quagga-0.99.24.1.tar.gz
 Summary  : Routing daemon
