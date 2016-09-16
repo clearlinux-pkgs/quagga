@@ -4,7 +4,7 @@
 #
 Name     : quagga
 Version  : 1.0.20160315
-Release  : 6
+Release  : 7
 URL      : http://download.savannah.gnu.org/releases/quagga/quagga-1.0.20160315.tar.gz
 Source0  : http://download.savannah.gnu.org/releases/quagga/quagga-1.0.20160315.tar.gz
 Summary  : Routing daemon
