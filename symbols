@@ -3,7 +3,7 @@ libospf.so.0:debug_init
 libospf.so.0:dump_lsa_key
 libospf.so.0:get_age
 libospf.so.0:get_metric
-libospf.so.0:htonf
+libospf.so.0:get_mpls_te_instance_value
 libospf.so.0:int2tv
 libospf.so.0:is_prefix_default
 libospf.so.0:ls_prefix_set
@@ -38,7 +38,6 @@ libospf.so.0:new_msg_register_event
 libospf.so.0:new_msg_register_opaque_type
 libospf.so.0:new_msg_reply
 libospf.so.0:new_msg_sync_lsdb
-libospf.so.0:ntohf
 libospf.so.0:oi_to_top
 libospf.so.0:ospf_abr_announce_network_to_area
 libospf.so.0:ospf_abr_task
@@ -315,7 +314,9 @@ libospf.so.0:ospf_lsdb_lookup_by_id_next
 libospf.so.0:ospf_lsdb_new
 libospf.so.0:ospf_master_init
 libospf.so.0:ospf_mpls_te_init
+libospf.so.0:ospf_mpls_te_lsa_schedule
 libospf.so.0:ospf_mpls_te_term
+libospf.so.0:ospf_mpls_te_update_if
 libospf.so.0:ospf_nbr_add_self
 libospf.so.0:ospf_nbr_bidirectional
 libospf.so.0:ospf_nbr_count
@@ -413,6 +414,8 @@ libospf.so.0:ospf_route_table_free
 libospf.so.0:ospf_routemap_set
 libospf.so.0:ospf_routemap_unset
 libospf.so.0:ospf_router_id_update
+libospf.so.0:ospf_router_info_init
+libospf.so.0:ospf_router_info_term
 libospf.so.0:ospf_router_lsa_update
 libospf.so.0:ospf_router_lsa_update_area
 libospf.so.0:ospf_rtrs_free
@@ -421,6 +424,7 @@ libospf.so.0:ospf_schedule_lsa_flood_area
 libospf.so.0:ospf_schedule_lsa_flush_area
 libospf.so.0:ospf_sock_init
 libospf.so.0:ospf_spf_calculate_schedule
+libospf.so.0:ospf_str2area_id
 libospf.so.0:ospf_summary_asbr_lsa_originate
 libospf.so.0:ospf_summary_lsa_originate
 libospf.so.0:ospf_terminate
@@ -440,6 +444,7 @@ libospf.so.0:ospf_vl_shut_unapproved
 libospf.so.0:ospf_vl_unapprove
 libospf.so.0:ospf_vl_up_check
 libospf.so.0:ospf_vls_in_area
+libospf.so.0:ospf_vty_clear_init
 libospf.so.0:ospf_vty_init
 libospf.so.0:ospf_vty_show_init
 libospf.so.0:ospf_zebra_add
@@ -447,6 +452,8 @@ libospf.so.0:ospf_zebra_add_discard
 libospf.so.0:ospf_zebra_delete
 libospf.so.0:ospf_zebra_delete_discard
 libospf.so.0:ospf_zebra_init
+libospf.so.0:set_linkparams_llri
+libospf.so.0:set_linkparams_lrrid
 libospf.so.0:show_opaque_info_detail
 libospf.so.0:tv_add
 libospf.so.0:tv_adjust
@@ -470,6 +477,7 @@ libzebra.so.0:access_list_init
 libzebra.so.0:access_list_lookup
 libzebra.so.0:access_list_reset
 libzebra.so.0:afi2family
+libzebra.so.0:afi2str
 libzebra.so.0:all_digit
 libzebra.so.0:apply_classful_mask_ipv4
 libzebra.so.0:apply_mask
@@ -511,11 +519,14 @@ libzebra.so.0:connected_delete_by_prefix
 libzebra.so.0:connected_free
 libzebra.so.0:connected_lookup_address
 libzebra.so.0:connected_new
+libzebra.so.0:copy_nexthops
 libzebra.so.0:distribute_list_add_hook
 libzebra.so.0:distribute_list_delete_hook
 libzebra.so.0:distribute_list_init
 libzebra.so.0:distribute_list_reset
 libzebra.so.0:distribute_lookup
+libzebra.so.0:event_counter_format
+libzebra.so.0:event_counter_inc
 libzebra.so.0:family2addrsize
 libzebra.so.0:family2afi
 libzebra.so.0:fletcher_checksum
@@ -538,7 +549,9 @@ libzebra.so.0:hash_iterate
 libzebra.so.0:hash_lookup
 libzebra.so.0:hash_release
 libzebra.so.0:hmac_md5
+libzebra.so.0:host_config_get
 libzebra.so.0:host_config_set
+libzebra.so.0:htonf
 libzebra.so.0:if_add_hook
 libzebra.so.0:if_cmp_func
 libzebra.so.0:if_create
@@ -559,6 +572,8 @@ libzebra.so.0:if_is_operative
 libzebra.so.0:if_is_pointopoint
 libzebra.so.0:if_is_running
 libzebra.so.0:if_is_up
+libzebra.so.0:if_link_params_free
+libzebra.so.0:if_link_params_get
 libzebra.so.0:if_link_type_str
 libzebra.so.0:if_lookup_address
 libzebra.so.0:if_lookup_address_vrf
@@ -630,7 +645,14 @@ libzebra.so.0:mes_lookup
 libzebra.so.0:mtype_memstr
 libzebra.so.0:mtype_stats_alloc
 libzebra.so.0:netmask_str2prefix_str
+libzebra.so.0:nexthop_add
+libzebra.so.0:nexthop_free
+libzebra.so.0:nexthop_new
+libzebra.so.0:nexthop_same_no_recurse
+libzebra.so.0:nexthop_type_to_str
+libzebra.so.0:nexthops_free
 libzebra.so.0:node_parent
+libzebra.so.0:ntohf
 libzebra.so.0:openzlog
 libzebra.so.0:pid_output
 libzebra.so.0:plog_debug
@@ -764,6 +786,7 @@ libzebra.so.0:sockunion_stream_socket
 libzebra.so.0:str2family
 libzebra.so.0:str2in6_addr
 libzebra.so.0:str2prefix
+libzebra.so.0:str2prefix_eth
 libzebra.so.0:str2prefix_ipv4
 libzebra.so.0:str2prefix_ipv6
 libzebra.so.0:str2sockunion
@@ -788,6 +811,8 @@ libzebra.so.0:stream_get_ipv4
 libzebra.so.0:stream_get_size
 libzebra.so.0:stream_getc
 libzebra.so.0:stream_getc_from
+libzebra.so.0:stream_getd
+libzebra.so.0:stream_getf
 libzebra.so.0:stream_getl
 libzebra.so.0:stream_getl_from
 libzebra.so.0:stream_getq
@@ -802,6 +827,8 @@ libzebra.so.0:stream_put_ipv4
 libzebra.so.0:stream_put_prefix
 libzebra.so.0:stream_putc
 libzebra.so.0:stream_putc_at
+libzebra.so.0:stream_putd
+libzebra.so.0:stream_putf
 libzebra.so.0:stream_putl
 libzebra.so.0:stream_putl_at
 libzebra.so.0:stream_putq
@@ -914,6 +941,8 @@ libzebra.so.0:zclient_stop
 libzebra.so.0:zebra_interface_add_read
 libzebra.so.0:zebra_interface_address_read
 libzebra.so.0:zebra_interface_if_set_value
+libzebra.so.0:zebra_interface_link_params_read
+libzebra.so.0:zebra_interface_link_params_write
 libzebra.so.0:zebra_interface_state_read
 libzebra.so.0:zebra_redistribute_send
 libzebra.so.0:zebra_route_char
