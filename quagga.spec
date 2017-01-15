@@ -4,7 +4,7 @@
 #
 Name     : quagga
 Version  : 1.1.0
-Release  : 9
+Release  : 10
 URL      : http://download.savannah.gnu.org/releases/quagga/quagga-1.1.0.tar.gz
 Source0  : http://download.savannah.gnu.org/releases/quagga/quagga-1.1.0.tar.gz
 Summary  : Routing daemon
@@ -76,6 +76,7 @@ lib components for the quagga package.
 
 %build
 export LANG=C
+export SOURCE_DATE_EPOCH=1484524030
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
@@ -87,6 +88,7 @@ export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
+export SOURCE_DATE_EPOCH=1484524030
 rm -rf %{buildroot}
 %make_install
 
@@ -164,7 +166,11 @@ rm -rf %{buildroot}
 /usr/include/quagga/zassert.h
 /usr/include/quagga/zclient.h
 /usr/include/quagga/zebra.h
-/usr/lib64/*.so
+/usr/lib64/libfpm_pb.so
+/usr/lib64/libospf.so
+/usr/lib64/libospfapiclient.so
+/usr/lib64/libquagga_pb.so
+/usr/lib64/libzebra.so
 
 %files doc
 %defattr(-,root,root,-)
@@ -174,4 +180,13 @@ rm -rf %{buildroot}
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/*.so.*
+/usr/lib64/libfpm_pb.so.0
+/usr/lib64/libfpm_pb.so.0.0.0
+/usr/lib64/libospf.so.0
+/usr/lib64/libospf.so.0.0.0
+/usr/lib64/libospfapiclient.so.0
+/usr/lib64/libospfapiclient.so.0.0.0
+/usr/lib64/libquagga_pb.so.0
+/usr/lib64/libquagga_pb.so.0.0.0
+/usr/lib64/libzebra.so.0
+/usr/lib64/libzebra.so.0.0.0
