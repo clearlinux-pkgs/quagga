@@ -6,7 +6,7 @@
 #
 Name     : quagga
 Version  : 1.1.1
-Release  : 11
+Release  : 12
 URL      : http://download.savannah.gnu.org/releases/quagga/quagga-1.1.1.tar.gz
 Source0  : http://download.savannah.gnu.org/releases/quagga/quagga-1.1.1.tar.gz
 Source99 : http://download.savannah.gnu.org/releases/quagga/quagga-1.1.1.tar.gz.asc
