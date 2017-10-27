@@ -1,0 +1,47 @@
+Configure miss: sys/ksym.h usability
+Configure miss: sys/ksym.h presence
+Configure miss: sys/ksym.h
+Configure miss: net/if_var.h
+Configure miss: netinet/in_var.h
+Configure miss: net/netopt.h
+Configure miss: inet/nd.h
+Configure miss: kvm.h
+Configure miss: sys/conf.h
+Configure miss: ucontext_t.uc_mcontext.uc_regs
+Configure miss: ucontext_t.uc_mcontext.regs
+Configure miss: tputs in -ltermcap
+Configure miss: net/bpf.h usability
+Configure miss: net/bpf.h presence
+Configure miss: net/bpf.h
+Configure miss: sys/dlpi.h usability
+Configure miss: sys/dlpi.h presence
+Configure miss: sys/dlpi.h
+Configure miss: broken CMSG_FIRSTHDR
+Configure miss: BSD struct ip_mreq hack
+Configure miss: net/if_media.h
+Configure miss: struct if_data.ifi_link_state
+Configure miss: netinet6/in6.h
+Configure miss: netinet/in6_var.h
+Configure miss: netinet6/in6_var.h
+Configure miss: netinet6/nd6.h
+Configure miss: res_init in -lresolv
+Configure miss: struct sockaddr_dl
+Configure miss: struct vifctl
+Configure miss: struct mfcctl
+Configure miss: struct sioc_sg_req
+Configure miss: vifi_t
+Configure miss: struct sioc_vif_req
+Configure miss: struct igmpmsg
+Configure miss: struct ifaliasreq
+Configure miss: struct if6_aliasreq
+Configure miss: struct in6_aliasreq
+Configure miss: struct rt_addrinfo
+Configure miss: struct nd_opt_homeagent_info
+Configure miss: struct sockaddr_dl.sdl_len
+Configure miss: struct if6_aliasreq.ifra_lifetime
+Configure miss: struct nd_opt_adv_interval.nd_opt_ai_type
+Configure miss: IP_RECVDSTADDR
+Configure miss: IP_RECVIF
+Configure miss: whether gcc accepts function __attribute__((weak,alias()))
+Configure miss: whether gcc supports #pragma _HP_SECONDARY_DEF
+Configure miss: whether gcc supports #pragma _CRI duplicate
