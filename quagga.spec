@@ -4,7 +4,7 @@
 #
 Name     : quagga
 Version  : 1.2.2
-Release  : 19
+Release  : 20
 URL      : http://download.savannah.gnu.org/releases/quagga/quagga-1.2.2.tar.gz
 Source0  : http://download.savannah.gnu.org/releases/quagga/quagga-1.2.2.tar.gz
 Summary  : Routing daemon
