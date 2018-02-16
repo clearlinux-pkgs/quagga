@@ -854,12 +854,11 @@ libzebra.so.1:stream_write
 libzebra.so.1:string_hash_make
 libzebra.so.1:strlcat
 libzebra.so.1:strlcpy
-libzebra.so.1:thread_call
 libzebra.so.1:thread_cancel
 libzebra.so.1:thread_cancel_event
 libzebra.so.1:thread_consumed_time
-libzebra.so.1:thread_fetch
 libzebra.so.1:thread_getrusage
+libzebra.so.1:thread_main
 libzebra.so.1:thread_master_create
 libzebra.so.1:thread_master_free
 libzebra.so.1:thread_should_yield
