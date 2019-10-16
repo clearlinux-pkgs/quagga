@@ -6,7 +6,7 @@
 #
 Name     : quagga
 Version  : 1.2.4
-Release  : 29
+Release  : 30
 URL      : http://download.savannah.gnu.org/releases/quagga/quagga-1.2.4.tar.gz
 Source0  : http://download.savannah.gnu.org/releases/quagga/quagga-1.2.4.tar.gz
 Source99 : http://download.savannah.gnu.org/releases/quagga/quagga-1.2.4.tar.gz.asc
