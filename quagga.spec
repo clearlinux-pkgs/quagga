@@ -6,16 +6,18 @@
 #
 Name     : quagga
 Version  : 1.2.4
-Release  : 30
+Release  : 31
 URL      : http://download.savannah.gnu.org/releases/quagga/quagga-1.2.4.tar.gz
 Source0  : http://download.savannah.gnu.org/releases/quagga/quagga-1.2.4.tar.gz
-Source99 : http://download.savannah.gnu.org/releases/quagga/quagga-1.2.4.tar.gz.asc
+Source1 : http://download.savannah.gnu.org/releases/quagga/quagga-1.2.4.tar.gz.asc
 Summary  : Routing daemon
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+ LGPL-2.0
-Requires: quagga-bin
-Requires: quagga-lib
-Requires: quagga-doc
+Requires: quagga-bin = %{version}-%{release}
+Requires: quagga-info = %{version}-%{release}
+Requires: quagga-lib = %{version}-%{release}
+Requires: quagga-license = %{version}-%{release}
+Requires: quagga-man = %{version}-%{release}
 BuildRequires : c-ares-dev
 BuildRequires : libcap-dev
 BuildRequires : ncurses-dev
@@ -31,6 +33,7 @@ Quagga supports BGP, OSPFv2, OSPFv3, ISIS, RIP, RIPng, PIM-SSM and NHRP.
 %package bin
 Summary: bin components for the quagga package.
 Group: Binaries
+Requires: quagga-license = %{version}-%{release}
 
 %description bin
 bin components for the quagga package.
@@ -39,52 +42,81 @@ bin components for the quagga package.
 %package dev
 Summary: dev components for the quagga package.
 Group: Development
-Requires: quagga-lib
-Requires: quagga-bin
-Provides: quagga-devel
+Requires: quagga-lib = %{version}-%{release}
+Requires: quagga-bin = %{version}-%{release}
+Provides: quagga-devel = %{version}-%{release}
+Requires: quagga = %{version}-%{release}
 
 %description dev
 dev components for the quagga package.
 
 
-%package doc
-Summary: doc components for the quagga package.
-Group: Documentation
+%package info
+Summary: info components for the quagga package.
+Group: Default
 
-%description doc
-doc components for the quagga package.
+%description info
+info components for the quagga package.
 
 
 %package lib
 Summary: lib components for the quagga package.
 Group: Libraries
+Requires: quagga-license = %{version}-%{release}
 
 %description lib
 lib components for the quagga package.
 
 
+%package license
+Summary: license components for the quagga package.
+Group: Default
+
+%description license
+license components for the quagga package.
+
+
+%package man
+Summary: man components for the quagga package.
+Group: Default
+
+%description man
+man components for the quagga package.
+
+
 %prep
 %setup -q -n quagga-1.2.4
+cd %{_builddir}/quagga-1.2.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1519085426
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1573790691
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1519085426
+export SOURCE_DATE_EPOCH=1573790691
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/quagga
+cp %{_builddir}/quagga-1.2.4/COPYING %{buildroot}/usr/share/package-licenses/quagga/a004b027854dfbec1307bf978dc5d1dd77ecd04c
+cp %{_builddir}/quagga-1.2.4/COPYING.LIB %{buildroot}/usr/share/package-licenses/quagga/d15eb679333b6205322beaa3d6be42592f44df02
+cp %{_builddir}/quagga-1.2.4/ospfclient/COPYING %{buildroot}/usr/share/package-licenses/quagga/a004b027854dfbec1307bf978dc5d1dd77ecd04c
+cp %{_builddir}/quagga-1.2.4/pimd/COPYING %{buildroot}/usr/share/package-licenses/quagga/b47456e2c1f38c40346ff00db976a2badf36b5e3
 %make_install
 
 %files
@@ -168,11 +200,11 @@ rm -rf %{buildroot}
 /usr/lib64/libquagga_pb.so
 /usr/lib64/libzebra.so
 
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/info/*
-%doc /usr/share/man/man1/*
-%doc /usr/share/man/man8/*
+%files info
+%defattr(0644,root,root,0755)
+/usr/share/info/quagga.info
+/usr/share/info/quagga.info-1
+/usr/share/info/quagga.info-2
 
 %files lib
 %defattr(-,root,root,-)
@@ -186,3 +218,24 @@ rm -rf %{buildroot}
 /usr/lib64/libquagga_pb.so.0.0.0
 /usr/lib64/libzebra.so.1
 /usr/lib64/libzebra.so.1.0.0
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/quagga/a004b027854dfbec1307bf978dc5d1dd77ecd04c
+/usr/share/package-licenses/quagga/b47456e2c1f38c40346ff00db976a2badf36b5e3
+/usr/share/package-licenses/quagga/d15eb679333b6205322beaa3d6be42592f44df02
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/vtysh.1
+/usr/share/man/man8/bgpd.8
+/usr/share/man/man8/isisd.8
+/usr/share/man/man8/nhrpd.8
+/usr/share/man/man8/ospf6d.8
+/usr/share/man/man8/ospfclient.8
+/usr/share/man/man8/ospfd.8
+/usr/share/man/man8/pimd.8
+/usr/share/man/man8/ripd.8
+/usr/share/man/man8/ripngd.8
+/usr/share/man/man8/watchquagga.8
+/usr/share/man/man8/zebra.8

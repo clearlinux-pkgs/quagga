@@ -1,3 +1,6 @@
+Configure miss: stropts.h usability
+Configure miss: stropts.h presence
+Configure miss: stropts.h
 Configure miss: sys/ksym.h usability
 Configure miss: sys/ksym.h presence
 Configure miss: sys/ksym.h
@@ -42,6 +45,5 @@ Configure miss: struct if6_aliasreq.ifra_lifetime
 Configure miss: struct nd_opt_adv_interval.nd_opt_ai_type
 Configure miss: IP_RECVDSTADDR
 Configure miss: IP_RECVIF
-Configure miss: whether gcc accepts function __attribute__((weak,alias()))
 Configure miss: whether gcc supports #pragma _HP_SECONDARY_DEF
 Configure miss: whether gcc supports #pragma _CRI duplicate
