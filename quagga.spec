@@ -6,10 +6,10 @@
 #
 Name     : quagga
 Version  : 1.2.4
-Release  : 32
-URL      : http://download.savannah.gnu.org/releases/quagga/quagga-1.2.4.tar.gz
-Source0  : http://download.savannah.gnu.org/releases/quagga/quagga-1.2.4.tar.gz
-Source1 : http://download.savannah.gnu.org/releases/quagga/quagga-1.2.4.tar.gz.asc
+Release  : 33
+URL      : https://download.savannah.nongnu.org/releases/quagga/quagga-1.2.4.tar.gz
+Source0  : https://download.savannah.nongnu.org/releases/quagga/quagga-1.2.4.tar.gz
+Source1  : https://download.savannah.nongnu.org/releases/quagga/quagga-1.2.4.tar.gz.asc
 Summary  : Routing daemon
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+ LGPL-2.0
@@ -93,13 +93,13 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573790691
+export SOURCE_DATE_EPOCH=1601860492
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
-%configure --disable-static
+%configure --disable-static CFLAGS="$CFLAGS -fcommon"
 make  %{?_smp_mflags}
 
 %check
@@ -107,10 +107,10 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1573790691
+export SOURCE_DATE_EPOCH=1601860492
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/quagga
 cp %{_builddir}/quagga-1.2.4/COPYING %{buildroot}/usr/share/package-licenses/quagga/a004b027854dfbec1307bf978dc5d1dd77ecd04c
