@@ -6,10 +6,10 @@
 #
 Name     : quagga
 Version  : 1.2.4
-Release  : 33
-URL      : https://download.savannah.nongnu.org/releases/quagga/quagga-1.2.4.tar.gz
-Source0  : https://download.savannah.nongnu.org/releases/quagga/quagga-1.2.4.tar.gz
-Source1  : https://download.savannah.nongnu.org/releases/quagga/quagga-1.2.4.tar.gz.asc
+Release  : 34
+URL      : https://github.com/Quagga/quagga/releases/download/quagga-1.2.4/quagga-1.2.4.tar.gz
+Source0  : https://github.com/Quagga/quagga/releases/download/quagga-1.2.4/quagga-1.2.4.tar.gz
+Source1  : https://github.com/Quagga/quagga/releases/download/quagga-1.2.4/quagga-1.2.4.tar.gz.asc
 Summary  : Routing daemon
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+ LGPL-2.0
@@ -24,6 +24,9 @@ BuildRequires : ncurses-dev
 BuildRequires : pkgconfig(libprotobuf-c)
 BuildRequires : readline-dev
 BuildRequires : sed
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 Quagga is a free software routing protocol suite. 
@@ -93,12 +96,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1601860492
+export SOURCE_DATE_EPOCH=1675989748
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$FFLAGS -fno-lto "
-export FFLAGS="$FFLAGS -fno-lto "
-export CXXFLAGS="$CXXFLAGS -fno-lto "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
 %configure --disable-static CFLAGS="$CFLAGS -fcommon"
 make  %{?_smp_mflags}
 
@@ -110,13 +113,13 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1601860492
+export SOURCE_DATE_EPOCH=1675989748
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/quagga
-cp %{_builddir}/quagga-1.2.4/COPYING %{buildroot}/usr/share/package-licenses/quagga/a004b027854dfbec1307bf978dc5d1dd77ecd04c
-cp %{_builddir}/quagga-1.2.4/COPYING.LIB %{buildroot}/usr/share/package-licenses/quagga/d15eb679333b6205322beaa3d6be42592f44df02
-cp %{_builddir}/quagga-1.2.4/ospfclient/COPYING %{buildroot}/usr/share/package-licenses/quagga/a004b027854dfbec1307bf978dc5d1dd77ecd04c
-cp %{_builddir}/quagga-1.2.4/pimd/COPYING %{buildroot}/usr/share/package-licenses/quagga/b47456e2c1f38c40346ff00db976a2badf36b5e3
+cp %{_builddir}/quagga-%{version}/COPYING %{buildroot}/usr/share/package-licenses/quagga/a004b027854dfbec1307bf978dc5d1dd77ecd04c || :
+cp %{_builddir}/quagga-%{version}/COPYING.LIB %{buildroot}/usr/share/package-licenses/quagga/d15eb679333b6205322beaa3d6be42592f44df02 || :
+cp %{_builddir}/quagga-%{version}/ospfclient/COPYING %{buildroot}/usr/share/package-licenses/quagga/a004b027854dfbec1307bf978dc5d1dd77ecd04c || :
+cp %{_builddir}/quagga-%{version}/pimd/COPYING %{buildroot}/usr/share/package-licenses/quagga/b47456e2c1f38c40346ff00db976a2badf36b5e3 || :
 %make_install
 
 %files
